@@ -1,0 +1,258 @@
+/* ───────── Ontwerptokens (afgeleid van het AK & Zonen-logo) ─────────
+   navy   = het dak en de leidingen in het logo
+   oranje = de vlam en de koperen leiding, enige actiekleur
+   Oranje wordt nooit als tekstkleur op wit gebruikt (contrast), enkel als vlak met navy tekst. */
+:root {
+  --navy-950: #0a1b2b;
+  --navy-900: #0e2437;
+  --navy-700: #1a4a6e;
+  --navy-300: #9db6c9;
+  --orange: #f28a1a;
+  --orange-press: #dc7a0e;
+
+  --paper: #f3f6f8;
+  --white: #ffffff;
+  --ink: #12283b;
+  --muted: #4a5d70;
+  --line: #d6dfe7;
+
+  --font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+  --font-body: "Figtree Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --r-sm: 12px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  --gutter: 20px;
+  --max: 1200px;
+  --section-y: 72px;
+
+  --header-h: 64px;
+  --bar-h: 72px;
+  --tap: 48px; /* minimaal tikdoel is 44px */
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 40px;
+    --section-y: 104px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 56px;
+    --section-y: 136px;
+    --header-h: 80px;
+  }
+}
+
+/* ───────── Reset en basis ───────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--header-h);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--white);
+  /* De vaste contactbalk op mobiel mag nooit inhoud afdekken */
+  padding-bottom: calc(var(--bar-h) + env(safe-area-inset-bottom));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--navy-900);
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(2rem, 7.4vw, 3.5rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ───────── Focus: altijd zichtbaar, op licht én donker ───────── */
+:focus-visible {
+  outline: 3px solid var(--navy-700);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.on-dark :focus-visible,
+.contactbar :focus-visible {
+  outline-color: var(--orange);
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--navy-900);
+  color: var(--white);
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ───────── Layout ───────── */
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--paper {
+  background: var(--paper);
+}
+
+.section--navy {
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.section--navy h2,
+.section--navy h3 {
+  color: var(--white);
+}
+
+.section__head {
+  margin-bottom: 40px;
+}
+
+.section__head h2 {
+  max-width: 20ch;
+}
+
+@media (min-width: 1024px) {
+  .section__head {
+    margin-bottom: 64px;
+  }
+}
+
+/* Foto's: één grading, één hoekradius */
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.photo picture {
+  display: block;
+  height: 100%;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Aanpasbare tekst voor ontbrekende gegevens: duidelijk herkenbaar, bewust niet mooi weggewerkt */
+.todo {
+  padding: 2px 8px;
+  outline: 2px dashed currentColor;
+  outline-offset: 0;
+  border-radius: 6px;
+}
+
+.todo-note {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px dashed var(--muted);
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
