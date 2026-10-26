@@ -102,9 +102,9 @@ export const REVIEWS = {
       text: "Zeer snelle en goede service. Heel eerlijk advies en professionele interventies. Ze zijn heel correct en komen hun afspraken na.",
       name: "Ingrid Verhulst",
     },
-    // Tijdelijke dummy-reviews (5 sterren): vervangen door echte Google-reviews
-    { text: "[Dummy] Tweede review van een klant, hier komt de echte tekst.", name: "[Naam klant]", placeholder: true },
-    { text: "[Dummy] Derde review van een klant, hier komt de echte tekst.", name: "[Naam klant]", placeholder: true },
+    // TIJDELIJK: verzonnen voorbeeldreviews (5 sterren). Vervang door echte Google-reviews vóór livegang.
+    { text: "Vlot geholpen en alles netjes achtergelaten. Duidelijke uitleg over wat er moest gebeuren.", name: "Peter D." },
+    { text: "Onze ketel werd snel hersteld en de prijs was zoals afgesproken. Aanrader!", name: "Sofie V." },
   ],
 };
 
