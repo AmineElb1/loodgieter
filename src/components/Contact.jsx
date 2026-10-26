@@ -1,53 +1,115 @@
 import { useState } from "react";
-import { PHONE, PHONE_LABEL, EMAIL, ADDRESS, MAPS_URL } from "../data/content";
+import { COMPANY, CONTACT, MAPS_URL } from "../content/content";
+import Button from "./ui/Button";
+import { MailIcon, PhoneIcon, PinIcon } from "./ui/Icons";
+import "./Contact.css";
+
+// Zet VITE_FORM_ENDPOINT (bv. een Formspree-URL) in .env om het formulier rechtstreeks te versturen.
+// Zonder endpoint opent het formulier het e-mailprogramma van de bezoeker met het bericht ingevuld.
+const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT;
 
 export default function Contact() {
-  const [form, setForm] = useState({ naam: "", tel: "", email: "", bericht: "" });
-  const [sent, setSent] = useState(false);
-  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
-  const submit = (e) => {
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | mailto | error
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // TODO: koppel aan backend / formulierdienst
-    console.log(form);
-    setSent(true);
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+
+    if (!ENDPOINT) {
+      const body = `Naam: ${data.naam}\nTelefoon: ${data.tel}\nE-mail: ${data.email || "-"}\n\n${data.bericht || ""}`;
+      window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent("Offerte-aanvraag via de website")}&body=${encodeURIComponent(body)}`;
+      setStatus("mailto");
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(res.statusText);
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
+  const done = status === "sent" || status === "mailto";
+
   return (
-    <section id="contact" className="sec contact">
-      <form onSubmit={submit}>
-        <p className="eb light">Contact</p>
-        <h2>Vraag je offerte aan</h2>
-        {sent ? (
-          <p role="status" className="ok">Bedankt! We nemen snel contact met je op.</p>
-        ) : (
-          <>
-            <label htmlFor="n">Naam</label>
-            <input id="n" className="f" required value={form.naam} onChange={set("naam")} autoComplete="name" />
-            <label htmlFor="t">Telefoonnummer</label>
-            <input id="t" className="f" type="tel" required value={form.tel} onChange={set("tel")} autoComplete="tel" />
-            <label htmlFor="e">E-mail</label>
-            <input id="e" className="f" type="email" value={form.email} onChange={set("email")} autoComplete="email" />
-            <label htmlFor="m">Bericht</label>
-            <textarea id="m" className="f" rows={4} value={form.bericht} onChange={set("bericht")} />
-            <button className="btn" type="submit">Verzenden</button>
-          </>
-        )}
-      </form>
-      <div>
-        <h3>AK &amp; Zonen</h3>
-        <p className="addr">
-          Bosstraat 14<br />2850 Boom<br />
-          <a href={`tel:${PHONE}`}>{PHONE_LABEL}</a><br />
-          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-        </p>
-        <iframe
-          className="map"
-          title="Kaart: AK & Zonen in Boom"
-          src={`https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-        <a className="more light" href={MAPS_URL} target="_blank" rel="noreferrer">Open in Google Maps →</a>
+    <section id="contact" className="section section--navy on-dark contact" aria-labelledby="contact-titel">
+      <div className="container contact__grid">
+        <div className="contact__info">
+          <h2 id="contact-titel">{CONTACT.title}</h2>
+          <p className="contact__lead">{CONTACT.lead}</p>
+
+          <ul className="contact__details">
+            <li>
+              <PhoneIcon />
+              <a href={`tel:${COMPANY.phone}`}>{COMPANY.phoneLabel}</a>
+            </li>
+            <li>
+              <MailIcon />
+              <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+            </li>
+            <li>
+              <PinIcon />
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">
+                {COMPANY.street}, {COMPANY.city}
+                <span className="sr-only"> (opent Google Maps in een nieuw tabblad)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="contact__card">
+          {done ? (
+            <div role="status" className="contact__done" tabIndex={-1}>
+              <h3>{status === "sent" ? CONTACT.success : "Je e-mailprogramma is geopend."}</h3>
+              {status === "mailto" && (
+                <p>
+                  Verstuur het ingevulde bericht om je aanvraag te bevestigen. Het mailprogramma niet gevonden? Stuur ons
+                  een mail op <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> of bel {COMPANY.phoneLabel}.
+                </p>
+              )}
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} className="form">
+              <div className="field">
+                <label htmlFor="f-naam">Naam</label>
+                <input id="f-naam" name="naam" type="text" autoComplete="name" required />
+              </div>
+              <div className="field">
+                <label htmlFor="f-tel">Telefoonnummer</label>
+                <input id="f-tel" name="tel" type="tel" inputMode="tel" autoComplete="tel" required />
+              </div>
+              <div className="field">
+                <label htmlFor="f-email">
+                  E-mail <span className="field__opt">(niet verplicht)</span>
+                </label>
+                <input id="f-email" name="email" type="email" autoComplete="email" />
+              </div>
+              <div className="field">
+                <label htmlFor="f-bericht">
+                  Bericht <span className="field__opt">(niet verplicht)</span>
+                </label>
+                <textarea id="f-bericht" name="bericht" rows={4} />
+              </div>
+
+              <Button type="submit" size="lg" disabled={status === "sending"}>
+                {status === "sending" ? "Bezig met verzenden…" : "Verzenden"}
+              </Button>
+
+              {status === "error" && (
+                <p role="alert" className="form__error">
+                  Verzenden is niet gelukt. Probeer het opnieuw of bel ons op {COMPANY.phoneLabel}.
+                </p>
+              )}
+            </form>
+          )}
+        </div>
       </div>
     </section>
   );

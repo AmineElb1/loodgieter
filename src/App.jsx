@@ -1,32 +1,48 @@
-import "./styles/app.css";
-import TopBar from "./components/TopBar";
+import { useEffect } from "react";
+import { initSmoothScroll } from "./lib/smoothScroll";
+import { ScrollTrigger } from "./lib/motion";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
-import Stats from "./components/Stats";
-import Steps from "./components/Steps";
+import Trust from "./components/Trust";
+import Process from "./components/Process";
 import Reviews from "./components/Reviews";
 import About from "./components/About";
 import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import CallBar from "./components/CallBar";
+import ContactBar from "./components/ContactBar";
 
 export default function App() {
+  useEffect(() => {
+    const destroy = initSmoothScroll();
+    // Lettertypes en beelden verschuiven de layout: ScrollTrigger opnieuw meten
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+    window.addEventListener("load", ScrollTrigger.refresh);
+    return () => {
+      window.removeEventListener("load", ScrollTrigger.refresh);
+      destroy();
+    };
+  }, []);
+
   return (
-    <div className="ak">
-      <TopBar />
+    <>
+      <a className="skip-link" href="#inhoud">
+        Ga naar de inhoud
+      </a>
       <Header />
-      <Hero />
-      <Services />
-      <Stats />
-      <Steps />
-      <Reviews />
-      <About />
-      <Faq />
-      <Contact />
+      <main id="inhoud">
+        <Hero />
+        <Services />
+        <Trust />
+        <Process />
+        <Reviews />
+        <About />
+        <Faq />
+        <Contact />
+      </main>
       <Footer />
-      <CallBar />
-    </div>
+      <ContactBar />
+    </>
   );
 }

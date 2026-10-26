@@ -1,0 +1,58 @@
+.services {
+  display: grid;
+  gap: 20px;
+}
+
+.services > li {
+  display: flex;
+}
+
+/* .spotlight-card krijgt standaard padding en radius; hier met hogere specificiteit overschreven */
+.spotlight-card.service-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border-radius: var(--r-lg);
+}
+
+.service-card__photo {
+  aspect-ratio: 4 / 3;
+}
+
+.service-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 24px 12px;
+}
+
+.service-card__body p {
+  color: var(--muted);
+}
+
+.service-card__link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: var(--tap);
+  margin-top: auto;
+  font-weight: 600;
+  color: var(--navy-900);
+  text-decoration-line: underline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+@media (min-width: 768px) {
+  .services {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card__body {
+    padding: 28px 24px 14px;
+  }
+}
