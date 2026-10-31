@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { COMPANY, NAV } from "../content/content";
 import { IMG } from "../assets/images";
 import { handleAnchorClick } from "../lib/smoothScroll";
+import { navHref } from "../lib/links";
 import Button from "./ui/Button";
 import { MenuIcon, PhoneIcon } from "./ui/Icons";
 import "./Header.css";
 
-export default function Header() {
+export default function Header({ home = true }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="site-header__inner container">
-        <a className="site-header__brand" href="#top" onClick={onNavClick} aria-label="AK & Zonen, naar het begin van de pagina">
+        <a className="site-header__brand" href={home ? "#top" : "/"} onClick={onNavClick} aria-label="AK & Zonen, naar het begin van de pagina">
           <img src={IMG.logo.src} srcSet={IMG.logo.srcSet} sizes="96px" width={IMG.logo.width} height={IMG.logo.height} alt={IMG.logo.alt} />
         </a>
 
@@ -32,7 +33,7 @@ export default function Header() {
           <ul>
             {NAV.map((item) => (
               <li key={item.href}>
-                <a href={item.href} onClick={onNavClick}>
+                <a href={navHref(item.href, home)} onClick={onNavClick}>
                   {item.label}
                 </a>
               </li>

@@ -15,6 +15,8 @@ export const COMPANY = {
   phone: "+32486777120",
   phoneLabel: "+32 486 77 71 20",
   email: "Ak.zonen@hotmail.com",
+  // Profielen die in het schema als sameAs worden vermeld (voeg een Facebook-pagina toe zodra die er is)
+  social: ["https://www.linkedin.com/in/ak-zonen-28517a286/"],
   // Zondag gesloten. days: schema.org-dagen voor de structured data
   hours: [
     { label: "Maandag tot en met zaterdag", short: "Ma – za", time: "08:00 – 18:00", opens: "08:00", closes: "18:00", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] },
@@ -66,6 +68,7 @@ export const SERVICES = [
     title: "Installatie en vervanging",
     text: "Is je ketel 10 tot 15 jaar oud? Een nieuw toestel bespaart elke maand op je energiefactuur.",
     cta: "Vraag een offerte",
+    page: "cv-ketel-vervangen",
     image: "installatie",
     position: "50% 45%",
   },
@@ -74,6 +77,7 @@ export const SERVICES = [
     title: "Onderhoud",
     text: "Een regelmatig onderhoud van uw verwarmingsketel is niet alleen wettelijk verplicht, maar zorgt tevens voor een zuiniger energieverbruik en een verlengde levensduur van uw CV-ketel.",
     cta: "Plan je onderhoud",
+    page: "cv-ketel-onderhoud",
     image: "tech",
     position: "50% 22%",
   },
@@ -82,6 +86,7 @@ export const SERVICES = [
     title: "Reparatie",
     text: "Wisselende temperatuur of geen warm water? We zoeken de oorzaak en herstellen snel.",
     cta: "Meld je probleem",
+    page: "cv-ketel-herstelling",
     image: "reparatie",
     position: "50% 50%",
   },

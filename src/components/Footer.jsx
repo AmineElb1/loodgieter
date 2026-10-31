@@ -1,8 +1,10 @@
 import { COMPANY, NAV } from "../content/content";
+import { PAGES } from "../content/pages";
+import { navHref } from "../lib/links";
 import { handleAnchorClick } from "../lib/smoothScroll";
 import "./Footer.css";
 
-export default function Footer() {
+export default function Footer({ home = true }) {
   return (
     <footer className="footer on-dark">
       <div className="container footer__grid">
@@ -15,9 +17,14 @@ export default function Footer() {
           <ul className="footer__links">
             {NAV.map((n) => (
               <li key={n.href}>
-                <a href={n.href} onClick={handleAnchorClick}>
+                <a href={navHref(n.href, home)} onClick={handleAnchorClick}>
                   {n.label}
                 </a>
+              </li>
+            ))}
+            {PAGES.map((p) => (
+              <li key={p.slug}>
+                <a href={`/${p.slug}`}>{p.navTitle}</a>
               </li>
             ))}
           </ul>
