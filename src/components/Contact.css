@@ -3,6 +3,11 @@
   gap: 40px;
 }
 
+/* Voorkomt dat brede inhoud (bv. de openingsuren) de kolom breder maakt dan het scherm */
+.contact__grid > * {
+  min-width: 0;
+}
+
 .contact__info {
   display: grid;
   gap: 20px;
@@ -55,14 +60,17 @@
 
 .contact__hours dl {
   display: grid;
-  grid-template-columns: max-content max-content;
-  gap: 0 20px;
+  gap: 6px;
   margin: 0;
+  min-width: 0;
   font-size: 1.125rem;
 }
 
+/* Op smalle schermen staan dag en uren naast elkaar en breken ze netjes af */
 .contact__hours dl > div {
-  display: contents;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
 }
 
 .contact__hours dt {
@@ -162,6 +170,17 @@
 .contact__done a {
   color: var(--navy-900);
   font-weight: 600;
+}
+
+@media (min-width: 480px) {
+  .contact__hours dl {
+    grid-template-columns: max-content max-content;
+    gap: 0 20px;
+  }
+
+  .contact__hours dl > div {
+    display: contents;
+  }
 }
 
 @media (min-width: 768px) {
