@@ -25,7 +25,7 @@ export default function Header() {
     <header className="site-header">
       <div className="site-header__inner container">
         <a className="site-header__brand" href="#top" onClick={onNavClick} aria-label="AK & Zonen, naar het begin van de pagina">
-          <img src={IMG.logo.src} srcSet={IMG.logo.srcSet} sizes="96px" width={IMG.logo.width} height={IMG.logo.height} alt="" />
+          <img src={IMG.logo.src} srcSet={IMG.logo.srcSet} sizes="96px" width={IMG.logo.width} height={IMG.logo.height} alt={IMG.logo.alt} />
         </a>
 
         <nav id="hoofdmenu" className={`site-nav${open ? " is-open" : ""}`} aria-label="Hoofdmenu">
