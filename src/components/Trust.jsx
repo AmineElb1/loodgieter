@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { SHOW_PLACEHOLDERS, STATS } from "../content/content";
 import useStaggerIn from "../lib/useStaggerIn";
 // React Bits CountUp (gebruikt `motion`) wordt pas geladen na de eerste paint, zodat de hoofdbundel licht blijft
@@ -11,6 +11,10 @@ const nl = (n, decimals) => n.toFixed(decimals).replace(".", ",");
 export default function Trust() {
   const root = useRef(null);
   useStaggerIn(root, ".trust__item", { stagger: 0.1, y: 20 });
+
+  // Het geanimeerde getal bestaat alleen in de browser: de vooraf gerenderde HTML toont meteen de eindwaarde
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const items = STATS.filter((s) => s.text || s.value !== null || SHOW_PLACEHOLDERS);
 
@@ -26,9 +30,13 @@ export default function Trust() {
                 <>
                   {/* Geanimeerd getal is verborgen voor screenreaders; die lezen de eindwaarde */}
                   <p className="trust__value" aria-hidden="true">
-                    <Suspense fallback={nl(s.value, s.decimals)}>
-                      <CountUp to={s.value} decimals={s.decimals} decimalSeparator="," duration={1.6} />
-                    </Suspense>
+                    {mounted ? (
+                      <Suspense fallback={nl(s.value, s.decimals)}>
+                        <CountUp to={s.value} decimals={s.decimals} decimalSeparator="," duration={1.6} />
+                      </Suspense>
+                    ) : (
+                      nl(s.value, s.decimals)
+                    )}
                     {s.suffix}
                   </p>
                   <span className="sr-only">{nl(s.value, s.decimals)}</span>
