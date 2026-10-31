@@ -16,7 +16,7 @@ export function render(path = "/") {
 const SITE = "https://www.akzonen.be";
 export const HOME_TITLE = "Verwarming Boom | Cv-ketel & onderhoud | AK & Zonen";
 const HOME_DESCRIPTION =
-  "Verwarming in Boom en omstreken: installatie, vervanging, onderhoud en herstelling van cv-ketels door familiebedrijf AK & Zonen. Gratis offerte.";
+  "Verwarming in Boom en omstreken: cv-ketel installatie, onderhoud en herstelling door familiebedrijf AK & Zonen. 5,0 op Google. Vraag een gratis offerte.";
 
 /** Structured data, volledig afgeleid uit src/content/content.js zodat het nooit afwijkt van de zichtbare pagina */
 const homeSchemas = [
@@ -60,6 +60,7 @@ const homeSchemas = [
     "@id": `${SITE}/#website`,
     url: `${SITE}/`,
     name: COMPANY.name,
+    alternateName: ["AK&zonen", "AK en Zonen"],
     inLanguage: "nl-BE",
     publisher: { "@id": `${SITE}/#bedrijf` },
   },

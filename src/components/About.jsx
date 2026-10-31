@@ -31,6 +31,7 @@ export default function About() {
             {ABOUT.title}
           </h2>
           <p className="about__text about__reveal">{ABOUT.text}</p>
+          <p className="about__text about__reveal">{ABOUT.text2}</p>
 
           <ul className="about__values about__reveal">
             {ABOUT.values.map((v) => (

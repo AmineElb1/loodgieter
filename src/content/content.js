@@ -171,7 +171,9 @@ export const REVIEWS = {
 
 export const ABOUT = {
   title: "Een familiebedrijf uit Boom",
-  text: "AK & Zonen staat voor vakmanschap met oog voor detail. Onze kernwaarden zijn kwaliteit, betrouwbaarheid en duidelijke communicatie.",
+  text: "AK & Zonen is een familiebedrijf uit Boom voor verwarming: installatie en vervanging, onderhoud en herstelling van cv-ketels. We staan voor vakmanschap met oog voor detail. Onze kernwaarden zijn kwaliteit, betrouwbaarheid en duidelijke communicatie.",
+  // Gebaseerd op wat klanten in hun Google-reviews schrijven
+  text2: "Klanten waarderen ons om onze snelle service, eerlijk advies en nagekomen afspraken. We werken netjes, laten alles proper achter en leggen duidelijk uit wat we gedaan hebben.",
   values: ["Kwaliteit", "Betrouwbaarheid", "Duidelijke communicatie"],
   quote: "Bij AK & Zonen ben je geen nummer, maar een naam.",
 };
