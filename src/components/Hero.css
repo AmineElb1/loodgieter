@@ -128,19 +128,26 @@
 
 @media (min-width: 1024px) {
   .hero {
-    padding-block: 72px 112px;
+    padding-block: 40px 72px;
   }
 
   .hero__grid {
     grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
     column-gap: 72px;
-    row-gap: 56px;
+    row-gap: 32px;
     align-items: end;
   }
 
+  /* Titel schaalt ook mee met de hoogte van het scherm, zodat de hele hero op laptops in beeld past */
+  .hero__title {
+    font-size: clamp(3.5rem, min(7vw, 9.5vh), 6rem);
+  }
+
+  /* De foto vult de ruimte die onder de titel overblijft: foto én pluspunten blijven zonder scrollen zichtbaar */
   .hero__media {
     grid-column: 1 / -1;
-    aspect-ratio: 5 / 2;
+    aspect-ratio: auto;
+    height: clamp(220px, calc(100svh - 610px), 480px);
     margin-top: 0;
   }
 

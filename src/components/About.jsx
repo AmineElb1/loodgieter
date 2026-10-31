@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ABOUT, SHOW_PLACEHOLDERS } from "../content/content";
+import { ABOUT } from "../content/content";
 import { IMG } from "../assets/images";
 import useStaggerIn from "../lib/useStaggerIn";
 import "./About.css";
@@ -14,17 +14,16 @@ export default function About() {
         <figure className="about__media about__reveal">
           <div className="photo about__photo">
             <img
-              src={IMG.interieur.src}
-              srcSet={IMG.interieur.srcSet}
+              src={IMG.bus.src}
+              srcSet={IMG.bus.srcSet}
               sizes="(min-width: 1024px) 480px, (min-width: 768px) 45vw, calc(100vw - 40px)"
-              width={IMG.interieur.width}
-              height={IMG.interieur.height}
-              alt={IMG.interieur.alt}
+              width={IMG.bus.width}
+              height={IMG.bus.height}
+              alt={IMG.bus.alt}
               loading="lazy"
               decoding="async"
             />
           </div>
-          {SHOW_PLACEHOLDERS && <figcaption className="todo-note">{ABOUT.photoPlaceholder}</figcaption>}
         </figure>
 
         <div className="about__copy">

@@ -1,4 +1,4 @@
-import { COMPANY, CREDITS, NAV } from "../content/content";
+import { COMPANY, NAV } from "../content/content";
 import { handleAnchorClick } from "../lib/smoothScroll";
 import "./Footer.css";
 
@@ -33,21 +33,9 @@ export default function Footer() {
 
       <div className="container">
         <div className="footer__legal">
-        <p>
-          © {new Date().getFullYear()} {COMPANY.name}
-        </p>
-        <div className="footer__credits">
-          <p>Foto’s van eigen werk: AK & Zonen. Overige foto’s via Unsplash:</p>
-          <ul>
-            {CREDITS.map((c) => (
-              <li key={c.url}>
-                <a href={c.url} target="_blank" rel="noopener noreferrer">
-                  {c.short}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <p>
+            © {new Date().getFullYear()} {COMPANY.name}
+          </p>
         </div>
       </div>
     </footer>
