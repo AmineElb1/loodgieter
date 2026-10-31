@@ -13,7 +13,7 @@ export function render() {
 }
 
 const SITE = "https://www.akzonen.be";
-const TITLE = "Verwarming Boom – cv-ketel installatie, onderhoud en herstelling | AK & Zonen";
+const TITLE = "Verwarming Boom | Cv-ketel & onderhoud | AK & Zonen";
 
 /** Structured data, volledig afgeleid uit src/content/content.js zodat het nooit afwijkt van de zichtbare pagina */
 export const schemas = [

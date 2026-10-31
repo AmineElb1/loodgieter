@@ -15,6 +15,7 @@ export default function Services() {
       <div className="container">
         <div className="section__head">
           <h2 id="diensten-titel">{SERVICES_INTRO.title}</h2>
+          <p className="section__lead">{SERVICES_INTRO.text}</p>
         </div>
 
         <ul className="services">

@@ -57,6 +57,7 @@ export const HERO = {
 
 export const SERVICES_INTRO = {
   title: "Alles voor een warm huis",
+  text: "AK & Zonen is uw partner voor verwarming in Boom, Niel, Rumst en omstreken. Of u nu een nieuwe cv-ketel nodig heeft, uw bestaande ketel wil laten nakijken of een storing wil laten herstellen: we helpen u graag verder, met een duidelijke offerte vooraf.",
 };
 
 export const SERVICES = [
@@ -171,7 +172,7 @@ export const ABOUT = {
 };
 
 export const FAQ = {
-  title: "Veelgestelde vragen",
+  title: "Veelgestelde vragen over verwarming in Boom",
   items: [
     {
       q: "Hoe vaak moet mijn cv-ketel onderhouden worden?",
