@@ -79,7 +79,7 @@ export default function Hero() {
               width={IMG.heroCrop.width}
               height={IMG.heroCrop.height}
               alt={IMG.heroWide.alt}
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
             />
           </picture>
