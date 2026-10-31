@@ -18,11 +18,10 @@ Alle teksten staan in [src/content/content.js](src/content/content.js). Ontbreke
 
 | Ontbreekt | Waar |
 |---|---|
-| echte Google-reviews (nu zijn 2 van de 3 reviews tijdelijke voorbeelden) | `REVIEWS.items` |
-| directe Google-reviewlink (nu opent het bedrijfsprofiel op Maps) | `GOOGLE_REVIEW_URL` |
+| meer Google-reviews toevoegen (nu 5 echte reviews) | `REVIEWS.items` |
 
 De reviews wisselen automatisch af (carrousel): voeg gewoon items toe aan `REVIEWS.items`.
-"Review toevoegen": 4 of 5 sterren stuurt door naar `GOOGLE_REVIEW_URL`, 3 sterren of minder toont een feedbackformulier
+"Review toevoegen": 4 of 5 sterren stuurt door naar `GOOGLE_REVIEW_URL` (opent het Google-reviewvenster van het bedrijfsprofiel meteen, via de Place ID in `GOOGLE_PLACE_ID`), 3 sterren of minder toont een feedbackformulier
 (via hetzelfde kanaal als het contactformulier, zie `src/lib/submitForm.js`).
 
 Zet `SHOW_PLACEHOLDERS = false` om alles wat nog niet is ingevuld te verbergen.

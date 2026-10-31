@@ -59,7 +59,7 @@ export const IMG = {
     src: logo440,
     srcSet: `${logo220} 220w, ${logo440} 440w`,
     width: 440,
-    height: 250,
+    height: 249,
     alt: "AK & Zonen",
   },
 };

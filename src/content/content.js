@@ -17,9 +17,13 @@ export const COMPANY = {
   email: "Ak.zonen@hotmail.com",
 };
 
+/** Google Place ID van het bedrijfsprofiel "AK&zonen" (Bosstraat 14, Boom) */
+export const GOOGLE_PLACE_ID = "ChIJv4bssWeoI6MRuhcduj-dILM";
+
 export const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
-  encodeURIComponent("AK & Zonen, Bosstraat 14, 2850 Boom");
+  encodeURIComponent("AK & Zonen, Bosstraat 14, 2850 Boom") +
+  `&query_place_id=${GOOGLE_PLACE_ID}`;
 
 export const NAV = [
   { label: "Diensten", href: "#diensten" },
@@ -95,16 +99,12 @@ export const PROCESS = {
   ],
 };
 
-/**
- * Google-link voor "Review toevoegen". Vervang door de directe review-link van het bedrijfsprofiel:
- * https://search.google.com/local/writereview?placeid=<PLACE_ID>
- * Zolang die ontbreekt, opent het bedrijfsprofiel op Google Maps (daar staat de knop "Review schrijven").
- */
-export const GOOGLE_REVIEW_URL = MAPS_URL;
+/** Opent het Google-reviewvenster van het bedrijfsprofiel meteen (op mobiel in de Maps-app). */
+export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${GOOGLE_PLACE_ID}`;
 
 /**
- * source: waar de review vandaan komt (alleen invullen voor echte, overgenomen reviews).
- * Het blok wisselt automatisch tussen deze reviews af: voeg er gewoon meer aan toe.
+ * Echte Google-reviews van het bedrijfsprofiel. Het blok wisselt automatisch tussen deze reviews af:
+ * voeg er gewoon meer aan toe. rating: aantal sterren (standaard 5). Ingekorte teksten hebben "…" of "[…]".
  */
 export const REVIEWS = {
   title: "5,0 op Google, 33 reviews",
@@ -114,9 +114,27 @@ export const REVIEWS = {
       name: "Ingrid Verhulst",
       source: "Google",
     },
-    // TIJDELIJK: verzonnen voorbeeldreviews (5 sterren). Vervang door echte Google-reviews vóór livegang.
-    { text: "Vlot geholpen en alles netjes achtergelaten. Duidelijke uitleg over wat er moest gebeuren.", name: "Peter D." },
-    { text: "Onze ketel werd snel hersteld en de prijs was zoals afgesproken. Aanrader!", name: "Sofie V." },
+    {
+      text: "Hallo allemaal die dit lezen, ik schrijf deze review omdat ik een zeer tevreden klant ben. De ervaring die heb gekregen met deze firma en zaakvoerder was in woord geweldig. Niets was teveel gevraagd op alles kregen wij een heel duidelijke antwoord die werd omgezet in de praktijk. […]",
+      name: "François Smets",
+      source: "Google",
+    },
+    {
+      text: "De medewerker kwam langs voor een onderhoud van mijn cv-ketel en heeft alles correct uitgevoerd. Gaf enkele tips om de levensduur van mijn ketel te verlengen en stuurde tijdens het bezoek het keuringsattest al meteen door. Zeer vriendelijk, en daarom hebben we tussendoor ook een leuke babbel gehad. Enorm tevreden over het proces!",
+      name: "Islamov Khamzat",
+      source: "Google",
+    },
+    {
+      text: "Een warmwater probleem met mijn H-rendement gasketel van 10 jaar oud. […] Kortom, goed service en eerlijke prijs. Bonus, toffe gast.",
+      name: "Yves Verstraeten",
+      source: "Google",
+    },
+    {
+      text: "A.k. & zonen. Stop, zoek niet verder. Prijs-kwaliteit en vakmanschap onder een dak. Dat vindt men niet veel meer.",
+      name: "Roger Seghers",
+      source: "Google",
+      rating: 4,
+    },
   ],
   add: {
     title: "Ervaring met AK & Zonen?",
@@ -124,7 +142,7 @@ export const REVIEWS = {
     cta: "Review toevoegen",
     ratingLabel: "Hoeveel sterren geef je ons?",
     positive: "Fijn om te horen! Plaats je review op Google, zo help je ook andere klanten.",
-    positiveCta: "Naar Google reviews",
+    positiveCta: "Schrijf een Google-review",
     negative: "Dat vinden we jammer. Vertel ons wat er beter kon, zodat we het de volgende keer beter doen.",
     success: "Bedankt voor je feedback. We lezen die persoonlijk en nemen ze mee om het beter te doen.",
   },

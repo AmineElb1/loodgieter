@@ -7,10 +7,10 @@ import "./Reviews.css";
 
 const ROTATE_MS = 7000;
 
-const Stars = () => (
-  <span className="stars" role="img" aria-label="5 op 5 sterren">
+const Stars = ({ rating = 5 }) => (
+  <span className="stars" role="img" aria-label={`${rating} op 5 sterren`}>
     {[0, 1, 2, 3, 4].map((i) => (
-      <StarIcon key={i} width={20} height={20} />
+      <StarIcon key={i} width={20} height={20} className={i < rating ? undefined : "is-off"} />
     ))}
   </span>
 );
@@ -75,12 +75,12 @@ export default function Reviews() {
             {items.map((r, i) => (
               <figure
                 key={r.name}
-                className={`review${i === index ? " is-active" : ""}`}
+                className={`review${i === index ? " is-active" : ""}${r.text.length > 200 ? " review--long" : ""}`}
                 aria-hidden={i === index ? undefined : true}
                 aria-roledescription="slide"
                 aria-label={`${i + 1} van ${items.length}`}
               >
-                <Stars />
+                <Stars rating={r.rating} />
                 <blockquote>
                   <p>{r.text}</p>
                 </blockquote>

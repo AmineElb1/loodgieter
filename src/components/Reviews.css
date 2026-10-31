@@ -36,12 +36,21 @@
   color: var(--orange);
 }
 
+.review .stars .is-off {
+  opacity: 0.3;
+}
+
 .review blockquote p {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 6vw, 2.25rem);
   line-height: 1.25;
   letter-spacing: -0.015em;
   color: var(--white);
+}
+
+.review--long blockquote p {
+  font-size: clamp(1.25rem, 4.6vw, 1.75rem);
+  line-height: 1.35;
 }
 
 .review figcaption {
@@ -100,7 +109,7 @@
 /* 44px tikdoel, maar visueel een klein puntje */
 .reviews__dots button {
   position: relative;
-  width: 44px;
+  width: 32px;
   height: 44px;
   padding: 0;
   border: 0;
@@ -238,6 +247,10 @@
 }
 
 @media (min-width: 768px) {
+  .reviews__dots button {
+    width: 44px;
+  }
+
   .reviews__slider {
     padding: 48px 40px 32px;
   }
