@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { COMPANY, CONTACT, MAPS_URL } from "../content/content";
+import submitForm from "../lib/submitForm";
 import Button from "./ui/Button";
 import { MailIcon, PhoneIcon, PinIcon } from "./ui/Icons";
 import "./Contact.css";
-
-// Zet VITE_FORM_ENDPOINT (bv. een Formspree-URL) in .env om het formulier rechtstreeks te versturen.
-// Zonder endpoint opent het formulier het e-mailprogramma van de bezoeker met het bericht ingevuld.
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT;
 
 export default function Contact() {
   const [status, setStatus] = useState("idle"); // idle | sending | sent | mailto | error
@@ -14,23 +11,15 @@ export default function Contact() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
-
-    if (!ENDPOINT) {
-      const body = `Naam: ${data.naam}\nTelefoon: ${data.tel}\nE-mail: ${data.email || "-"}\n\n${data.bericht || ""}`;
-      window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent("Offerte-aanvraag via de website")}&body=${encodeURIComponent(body)}`;
-      setStatus("mailto");
-      return;
-    }
-
     setStatus("sending");
     try {
-      const res = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error(res.statusText);
-      setStatus("sent");
+      setStatus(
+        await submitForm({
+          subject: "Contactaanvraag via de website",
+          mailBody: `Naam: ${data.naam}\nTelefoon: ${data.tel}\nE-mail: ${data.email || "-"}\n\n${data.bericht || ""}`,
+          data,
+        })
+      );
     } catch {
       setStatus("error");
     }

@@ -41,7 +41,7 @@ export default function Services() {
                       alt={img.alt}
                       loading="lazy"
                       decoding="async"
-                      style={{ objectPosition: s.image === "tech" ? "50% 22%" : "50% 50%" }}
+                      style={{ objectPosition: s.position }}
                     />
                   </div>
                   <div className="service-card__body">

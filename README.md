@@ -18,11 +18,15 @@ Alle teksten staan in [src/content/content.js](src/content/content.js). Ontbreke
 
 | Ontbreekt | Waar |
 |---|---|
-| tweede en derde Google-review (+ naam) | `REVIEWS.items` |
-| teamfoto | `ABOUT.photoPlaceholder` |
+| echte Google-reviews (nu zijn 2 van de 3 reviews tijdelijke voorbeelden) | `REVIEWS.items` |
+| directe Google-reviewlink (nu opent het bedrijfsprofiel op Maps) | `GOOGLE_REVIEW_URL` |
+
+De reviews wisselen automatisch af (carrousel): voeg gewoon items toe aan `REVIEWS.items`.
+"Review toevoegen": 4 of 5 sterren stuurt door naar `GOOGLE_REVIEW_URL`, 3 sterren of minder toont een feedbackformulier
+(via hetzelfde kanaal als het contactformulier, zie `src/lib/submitForm.js`).
 
 Zet `SHOW_PLACEHOLDERS = false` om alles wat nog niet is ingevuld te verbergen.
-Cijfers: 100+ klanten en 2 u reactietijd zijn door de opdrachtgever bevestigd; "Jaren ervaring" staat zonder getal (aanpasbaar in `STATS`).
+Cijfers: 100+ klanten is door de opdrachtgever bevestigd.
 Controleer ook de overgenomen cijfers "5,0 op Google" en "33 reviews" en de antwoorden in de FAQ: die komen uit het bestaande
 project en konden niet tegen de live-website gecontroleerd worden.
 
@@ -38,8 +42,8 @@ project en konden niet tegen de live-website gecontroleerd worden.
 - **Vaste contactbalk:** op mobiel/tablet onderaan met "Bel ons" en "Offerte aanvragen" (56 px hoog, eigen donker vlak
   dus overal goed contrast, body heeft evenveel `padding-bottom` zodat niets wordt afgedekt). Vanaf 1024 px staat dezelfde actie
   vast in de header (telefoonnummer + oranje knop).
-- **Foto's:** eigen werkfoto's van AK & Zonen + 3 Unsplash-beelden. Alles is verkleind naar webp (responsive `srcset`,
-  lazy loading, alt-teksten) met dezelfde kleurgrading (iets minder verzadigd). Bronnen staan in de footer en in `CREDITS`.
+- **Foto's:** eigen werkfoto's van AK & Zonen en een foto van een technicus bij een ketel (herstelling). Alles is verkleind naar webp (responsive `srcset`,
+  lazy loading, alt-teksten) met dezelfde kleurgrading (iets minder verzadigd).
 
 ## React Bits (3 componenten, elk met één vaste rol)
 
