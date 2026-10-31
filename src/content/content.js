@@ -15,7 +15,22 @@ export const COMPANY = {
   phone: "+32486777120",
   phoneLabel: "+32 486 77 71 20",
   email: "Ak.zonen@hotmail.com",
+  // Zondag gesloten. days: schema.org-dagen voor de structured data
+  hours: [
+    { label: "Maandag tot en met zaterdag", short: "Ma – za", time: "08:00 – 18:00", opens: "08:00", closes: "18:00", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] },
+    { label: "Zondag", short: "Zo", time: "Gesloten" },
+  ],
 };
+
+/** Werkgebied: Boom en de gemeenten in de buurt. Pas gerust aan: pagina, schema en antwoord op de FAQ volgen automatisch. */
+export const AREA = {
+  title: "Werkgebied",
+  text: "Vanuit Boom helpen we klanten in de hele regio, onder meer in",
+  places: ["Boom", "Niel", "Rumst", "Schelle", "Hemiksem", "Aartselaar", "Willebroek", "Bornem", "Kontich", "Hove", "Edegem"],
+};
+
+/** Datum waarop de inhoud voor het laatst inhoudelijk is aangepast (voor het schema; handmatig bijwerken) */
+export const LAST_UPDATED = "2026-10-31";
 
 /** Google Place ID van het bedrijfsprofiel "AK&zonen" (Bosstraat 14, Boom) */
 export const GOOGLE_PLACE_ID = "ChIJv4bssWeoI6MRuhcduj-dILM";
@@ -35,7 +50,7 @@ export const NAV = [
 
 export const HERO = {
   place: "Familiebedrijf uit Boom",
-  title: "Verwarming waar je op kunt vertrouwen",
+  title: "Verwarming in Boom waar je op kunt vertrouwen",
   lead: "Installatie, onderhoud en herstelling van je cv-ketel. Wij zijn een familiebedrijf uit Boom en elke dag onderweg in de regio.",
   usps: ["Persoonlijke aanpak", "Transparante prijzen", "Snelle service in Boom en omstreken"],
 };

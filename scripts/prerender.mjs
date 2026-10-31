@@ -9,13 +9,15 @@ const root = resolve(fileURLToPath(new URL(".", import.meta.url)), "..");
 const ssrDir = resolve(root, ".ssr");
 const htmlPath = resolve(root, "dist/index.html");
 
-const { render, faqJsonLd } = await import(pathToFileURL(resolve(ssrDir, "entry-server.js")).href);
+const { render, schemas } = await import(pathToFileURL(resolve(ssrDir, "entry-server.js")).href);
 
 let html = await readFile(htmlPath, "utf8");
 if (!html.includes('<div id="root"></div>')) throw new Error("Geen lege #root gevonden in dist/index.html");
 
-const faqScript = `<script type="application/ld+json">${JSON.stringify(faqJsonLd).replace(/</g, "\\u003c")}</script>`;
-html = html.replace('<div id="root"></div>', `<div id="root">${render()}</div>`).replace("</head>", `${faqScript}\n  </head>`);
+const schemaScripts = schemas
+  .map((s) => `<script type="application/ld+json">${JSON.stringify(s).replace(/</g, "\\u003c")}</script>`)
+  .join("\n    ");
+html = html.replace('<div id="root"></div>', `<div id="root">${render()}</div>`).replace("</head>", `    ${schemaScripts}\n  </head>`);
 
 await writeFile(htmlPath, html);
 await rm(ssrDir, { recursive: true, force: true });

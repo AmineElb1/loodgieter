@@ -44,6 +44,37 @@
   overflow-wrap: anywhere;
 }
 
+.contact__details .contact__hours {
+  align-items: flex-start;
+  padding-block: 12px;
+}
+
+.contact__hours svg {
+  margin-top: 4px;
+}
+
+.contact__hours dl {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 0 20px;
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.contact__hours dl > div {
+  display: contents;
+}
+
+.contact__hours dt {
+  color: var(--navy-300);
+}
+
+.contact__hours dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--white);
+}
+
 .contact__card {
   padding: 28px 22px;
   border-radius: var(--r-lg);

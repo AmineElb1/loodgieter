@@ -28,6 +28,11 @@ export default function Footer() {
           <span className="footer__line">{COMPANY.city}</span>
           <a href={`tel:${COMPANY.phone}`}>{COMPANY.phoneLabel}</a>
           <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+          {COMPANY.hours.map((h) => (
+            <span className="footer__line" key={h.label}>
+              {h.short}: {h.time}
+            </span>
+          ))}
         </address>
       </div>
 

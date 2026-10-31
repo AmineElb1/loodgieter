@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ABOUT } from "../content/content";
+import { ABOUT, AREA } from "../content/content";
 import { IMG } from "../assets/images";
 import useStaggerIn from "../lib/useStaggerIn";
 import "./About.css";
@@ -37,6 +37,16 @@ export default function About() {
               <li key={v}>{v}</li>
             ))}
           </ul>
+
+          <div className="about__area about__reveal">
+            <h3>{AREA.title}</h3>
+            <p>{AREA.text}:</p>
+            <ul>
+              {AREA.places.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          </div>
 
           <blockquote className="about__quote about__reveal">
             <p>{ABOUT.quote}</p>
