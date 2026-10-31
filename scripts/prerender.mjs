@@ -1,10 +1,11 @@
 // Zet de gebouwde React-app om naar statische HTML in dist/index.html, zodat crawlers
 // (ook AI-bots die geen JavaScript uitvoeren) de volledige tekst, koppen en FAQ-schema zien.
 import { readFile, writeFile, rm } from "node:fs/promises";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 
-const root = resolve(import.meta.dirname, "..");
+// import.meta.dirname bestaat pas vanaf Node 20.11: fileURLToPath werkt ook op oudere versies (bv. op Vercel)
+const root = resolve(fileURLToPath(new URL(".", import.meta.url)), "..");
 const ssrDir = resolve(root, ".ssr");
 const htmlPath = resolve(root, "dist/index.html");
 
