@@ -12,8 +12,11 @@ import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ContactBar from "./components/ContactBar";
+import ServicePage from "./components/ServicePage";
+import { findPage } from "./content/pages";
 
-export default function App() {
+export default function App({ path = "/" }) {
+  const page = findPage(path);
   useEffect(() => {
     const destroy = initSmoothScroll();
     // Lettertypes en beelden verschuiven de layout: ScrollTrigger opnieuw meten
@@ -24,6 +27,8 @@ export default function App() {
       destroy();
     };
   }, []);
+
+  if (page) return <ServicePage page={page} />;
 
   return (
     <>

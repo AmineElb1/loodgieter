@@ -11,9 +11,9 @@
 - Google-reviews: 5,0 op 5 (33 reviews)
 
 ## Diensten
-- Installatie en vervanging van cv-ketels
-- Onderhoud van cv-ketels (in Vlaanderen verplicht om de 2 jaar voor een gasketel)
-- Herstelling en storingen
+- [Cv-ketel vervangen](https://www.akzonen.be/cv-ketel-vervangen): installatie en vervanging van cv-ketels
+- [Cv-ketel onderhoud](https://www.akzonen.be/cv-ketel-onderhoud): onderhoud (in Vlaanderen verplicht om de 2 jaar voor een gasketel)
+- [Storing en herstelling](https://www.akzonen.be/cv-ketel-herstelling): geen warm water, wisselende temperatuur en andere storingen
 
 ## Pagina's
 - [Website](https://www.akzonen.be/): diensten, werkwijze, reviews, veelgestelde vragen en contact

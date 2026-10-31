@@ -46,11 +46,18 @@ export default function Services() {
                     />
                   </div>
                   <div className="service-card__body">
-                    <h3>{s.title}</h3>
+                    <h3>
+                      <a href={`/${s.page}`}>{s.title}</a>
+                    </h3>
                     <p>{s.text}</p>
-                    <a className="service-card__link" href="#contact" onClick={handleAnchorClick}>
-                      {s.cta}
-                    </a>
+                    <div className="service-card__links">
+                      <a className="service-card__link" href="#contact" onClick={handleAnchorClick}>
+                        {s.cta}
+                      </a>
+                      <a className="service-card__more" href={`/${s.page}`}>
+                        Lees meer<span className="sr-only">: {s.title}</span>
+                      </a>
+                    </div>
                   </div>
                 </SpotlightCard>
               </li>

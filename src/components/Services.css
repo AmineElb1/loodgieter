@@ -32,12 +32,32 @@
   color: var(--muted);
 }
 
+.service-card__body h3 a {
+  text-decoration: none;
+}
+
+.service-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 24px;
+  margin-top: auto;
+}
+
+.service-card__more {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-weight: 500;
+  color: var(--muted);
+  text-underline-offset: 6px;
+}
+
 .service-card__link {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
   min-height: var(--tap);
-  margin-top: auto;
   font-weight: 600;
   color: var(--navy-900);
   text-decoration-line: underline;
