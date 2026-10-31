@@ -2,7 +2,7 @@ import { useState } from "react";
 import { COMPANY, CONTACT, MAPS_URL } from "../content/content";
 import submitForm from "../lib/submitForm";
 import Button from "./ui/Button";
-import { MailIcon, PhoneIcon, PinIcon } from "./ui/Icons";
+import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from "./ui/Icons";
 import "./Contact.css";
 
 export default function Contact() {
@@ -42,6 +42,17 @@ export default function Contact() {
             <li>
               <MailIcon />
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+            </li>
+            <li className="contact__hours">
+              <ClockIcon />
+              <dl>
+                {COMPANY.hours.map((h) => (
+                  <div key={h.label}>
+                    <dt>{h.label}</dt>
+                    <dd>{h.time}</dd>
+                  </div>
+                ))}
+              </dl>
             </li>
             <li>
               <PinIcon />

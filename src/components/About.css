@@ -47,6 +47,38 @@
   color: var(--navy-900);
 }
 
+.about__area {
+  display: grid;
+  gap: 10px;
+  max-width: 34rem;
+}
+
+.about__area h3 {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.about__area p {
+  color: var(--muted);
+}
+
+.about__area ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about__area li {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--navy-900);
+}
+
 .about__quote p {
   max-width: 24ch;
   padding-left: 20px;
